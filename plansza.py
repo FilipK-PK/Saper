@@ -1,6 +1,7 @@
 from logika import Logika
 from grafika import Grafika
 
+# w tej klasie lacze obie klasy 
 class Plansza(Logika, Grafika):
     def __init__(self, s, w, b):
         self.w = w
