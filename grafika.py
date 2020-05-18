@@ -1,6 +1,7 @@
 import pygame
 import os
 
+#dodaje grafike dla przyciskow
 l0 = pygame.image.load(os.path.join('png','0.png'))
 l1 = pygame.image.load(os.path.join('png','1.png'))
 l2 = pygame.image.load(os.path.join('png','2.png'))
@@ -70,13 +71,14 @@ class Grafika():
     def rysuj(self, surface):
         self.rysFlagi(surface)
         surface.blit(lr, (215,10))
-
+    
+        # wyswietlanie wygranej/przegranej
         if self.win:
             surface.blit(lw, (440,5))
-
         if self.end:
             surface.blit(lk, (440,5))
-
+        
+        #rozmieszczam odpowiednie ikonki w odpowiednim mniejscu
         for y in range(len(self.Macierz)):
             for x in range(len(self.Macierz[y])):
                 if self.Macierz[y][x][1] == 1:
