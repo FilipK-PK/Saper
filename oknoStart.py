@@ -3,18 +3,20 @@ import tkinter
 import tkinter.messagebox
 from gra import Gra
 
-WYMIARY_OKNA = (620,680)
+WYMIARY_OKNA = (620, 680)
 MAX_PLANSZY = 15
 MIN_PLANSZY = 2
-MAX_BAB = 3 # ilosci przyciskow/MAX_BAB to maksymalna liczba bab
+MAX_BAB = 3  # ilosci przyciskow/MAX_BAB to maksymalna liczba bab
 
-#klasam wyjatkow
+
+# klasam wyjatkow
 class Poza(Exception):
     pass
 
+
 class OknoStart:
     def __init__(self):
-        self.wartosciStart = (2,2,1)
+        self.wartosciStart = (2, 2, 1)
         self.poprawnosc = False
         self.okno = tkinter.Tk()
         self.okno.title('SAPER')
@@ -23,9 +25,9 @@ class OknoStart:
         self.okno2 = tkinter.Frame(self.okno)
         self.okno3 = tkinter.Frame(self.okno)
 
-        #ustawianie okien do wymiarow
-        self.text1 = tkinter.Label(self.okno1,text = 'Podaj wymiary okna ')
-        self.text2 = tkinter.Label(self.okno1,text = 'x')
+        # ustawianie okien do wymiarow
+        self.text1 = tkinter.Label(self.okno1, text='Podaj wymiary okna ')
+        self.text2 = tkinter.Label(self.okno1, text='x')
         self.wpisz1 = tkinter.Entry(self.okno1, width=3)
         self.wpisz2 = tkinter.Entry(self.okno1, width=3)
 
@@ -36,14 +38,14 @@ class OknoStart:
         self.przycisk1 = tkinter.Button(self.okno3, text='Uruchom!', command=self.wywolanie_gry)
         self.koniec = tkinter.Button(self.okno3, text='Zakończ', command=self.okno.destroy)
 
-        #ustawianie polorzenia elementow
+        # ustawianie polorzenia elementow
         self.text1.pack(side='left')
         self.wpisz1.pack(side='left')
         self.text2.pack(side='left')
         self.wpisz2.pack(side='left')
         self.text3.pack(side='left')
         self.wpisz3.pack(side='left')
-        self.przycisk1.pack(side ='left')
+        self.przycisk1.pack(side='left')
         self.koniec.pack(side='left')
 
         self.okno1.pack()
@@ -56,7 +58,7 @@ class OknoStart:
         tkinter.mainloop()
 
     def sprawdzanie_Wartosci_Poczatkowych(self, wysokosc, szerokosc, baby):
-        #sprawdzanie poprawnosci pobranej liczby
+        # sprawdzanie poprawnosci pobranej liczby
         try:
             wysokosc = int(wysokosc)
             szerokosc = int(szerokosc)
@@ -87,25 +89,22 @@ class OknoStart:
             return False
 
         self.Wartosci_Start = wysokosc, szerokosc, baby
-
         self.poprawnosc = True
-
         return True
 
     def wywolanie_gry(self):
-
         wysokosc = self.wpisz1.get()
         szerokosc = self.wpisz2.get()
         baby = self.wpisz3.get()
 
-        if self.sprawdzanie_Wartosci_Poczatkowych(wysokosc, szerokosc, baby) == False:
+        if not self.sprawdzanie_Wartosci_Poczatkowych(wysokosc, szerokosc, baby):
             return
 
         tlo = pygame.display.set_mode(WYMIARY_OKNA)
         pygame.display.set_caption('Saper')
 
         # wywołanie planszy
-        gra = Gra(self.Wartosci_Start[0],self.Wartosci_Start[1],self.Wartosci_Start[2])
+        gra = Gra(self.Wartosci_Start[0], self.Wartosci_Start[1], self.Wartosci_Start[2])
 
         # petla wykonuje sie dopuki nie wyłaczymy okna
         while True:
@@ -121,4 +120,3 @@ class OknoStart:
             gra.rysuj(tlo)
             gra.koniec()
             pygame.display.flip()
-
