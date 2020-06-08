@@ -1,3 +1,10 @@
-from oknoStart import OknoStart
+''' plik glowny '''
 
-gra = OknoStart()
+def main():
+    from okno_start import OknoStart
+    gra = OknoStart()
+    gra.uruchom_okna()
+
+
+if __name__ == '__main__':
+    main()
