@@ -319,17 +319,27 @@ class Gra:
         # wartosci poczatkowe i koncowe odblokowwanych elementow
 
         # odznaczanie pol
-        for yi in range(-1, 0, +1):
-            for xi in range(-1, 0, +1):
-                if yi == xi == 0:
-                    continue
-                if not 0 <= y + yi < len(self.macierz):
-                    continue
-                if not 0 <= x + xi < len(self.macierz[y]):
-                    continue
-                if 0 < self.macierz[y + yi][x + xi][0] < 8:
-                    wartosc_pola = self.macierz[y + yi][x + xi][0]
-                    self.macierz[y + yi][x + xi] = (wartosc_pola, STAN_ODKRYTY)
+        StartX = x - 1
+        StartY = y - 1
+        KoniecX = x + 1
+        KoniecY = y + 1
+
+        # skrajne przypadki 0, n
+        if x == 0:
+            StartX = x
+        if x == len(self.Macierz)-1:
+            KoniecX = x
+        if y == 0:
+            StartY = y
+        if y == len(self.Macierz[0])-1:
+            KoniecY = y
+
+        #odznaczanie pol
+        for i in range(StartX, KoniecX + 1):
+            for j in range(StartY, KoniecY + 1):
+                if self.Macierz[i][j][0] > 0 and self.Macierz[i][j][0] < 8:
+                    z = self.Macierz[i][j][0]
+                    self.Macierz[i][j] = (z, 1)
 
     def koniec(self):  # sprawdza czy wszysktie pola bez miny zostaly odkryte
         ''' sprawdza czy gracz wygral ture '''
