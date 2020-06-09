@@ -111,7 +111,7 @@ class Gra:
             self.macierz[y][x] = (ZNAK_BABY, STAN_NIC)
             self.oznacz_babe(y, x)
 
-    def oznacz_babe(self, polozenie_x, polozenie_y):
+    def oznacz_babe(self, polozenie_y, polozenie_x):
         ''' ustawia odpowiednia wartosc pola na planszy '''
         # wartosci poczatkowe i koncowe
         poczatek_x = polozenie_x - 1
@@ -120,18 +120,18 @@ class Gra:
         koniec_y = polozenie_y + 1
 
         # wartosci skrajne 0,n
-        if polozenie_x == 0:
-            poczatek_x = polozenie_x
-        if polozenie_x == len(self.macierz) - 1:
-            koniec_x = polozenie_x
         if polozenie_y == 0:
             poczatek_y = polozenie_y
-        if polozenie_y == len(self.macierz[0]) - 1:
+        if polozenie_y == len(self.macierz) - 1:
             koniec_y = polozenie_y
+        if polozenie_x == 0:
+            poczatek_x = polozenie_x
+        if polozenie_x == len(self.macierz[0]) - 1:
+            koniec_x = polozenie_x
 
         # nanoszenie wartosci na plansze
-        for i in range(poczatek_x, koniec_x + 1):
-            for j in range(poczatek_y, koniec_y + 1):
+        for i in range(poczatek_y, koniec_y + 1):
+            for j in range(poczatek_x, koniec_x + 1):
                 if self.macierz[i][j] != (ZNAK_BABY, STAN_NIC):
                     znak_pola = self.macierz[i][j][0]
                     self.macierz[i][j] = (znak_pola + 1, STAN_NIC)
@@ -314,32 +314,31 @@ class Gra:
             self.odznacz(y + p['y'], x + p['x'])
             self.odkryj(y + p['y'], x + p['x'])
 
-    def odznacz(self, y, x):
+    def odznacz(self, polozenie_y, polozenie_x):
         ''' odkrywa pola wokol odkrytego elementu'''
+
         # wartosci poczatkowe i koncowe odblokowwanych elementow
+        poczatek_x = polozenie_x - 1
+        poczatek_y = polozenie_y - 1
+        koniec_x = polozenie_x + 1
+        koniec_y = polozenie_y + 1
 
-        # odznaczanie pol
-        StartX = x - 1
-        StartY = y - 1
-        KoniecX = x + 1
-        KoniecY = y + 1
+        # wartosci skrajne 0,n
+        if polozenie_y == 0:
+            poczatek_y = polozenie_y
+        if polozenie_y == len(self.macierz) - 1:
+            koniec_y = polozenie_y
+        if polozenie_x == 0:
+            poczatek_x = polozenie_x
+        if polozenie_x == len(self.macierz[0]) - 1:
+            koniec_x = polozenie_x
 
-        # skrajne przypadki 0, n
-        if x == 0:
-            StartX = x
-        if x == len(self.Macierz)-1:
-            KoniecX = x
-        if y == 0:
-            StartY = y
-        if y == len(self.Macierz[0])-1:
-            KoniecY = y
-
-        #odznaczanie pol
-        for i in range(StartX, KoniecX + 1):
-            for j in range(StartY, KoniecY + 1):
-                if self.Macierz[i][j][0] > 0 and self.Macierz[i][j][0] < 8:
-                    z = self.Macierz[i][j][0]
-                    self.Macierz[i][j] = (z, 1)
+        # nanoszenie wartosci na plansze
+        for i in range(poczatek_y, koniec_y + 1):
+            for j in range(poczatek_x, koniec_x + 1):
+                if 0 < self.macierz[i][j][0] < 8:
+                    znak_pola = self.macierz[i][j][0]
+                    self.macierz[i][j] = (znak_pola, STAN_ODKRYTY)
 
     def koniec(self):  # sprawdza czy wszysktie pola bez miny zostaly odkryte
         ''' sprawdza czy gracz wygral ture '''
