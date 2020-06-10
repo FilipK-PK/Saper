@@ -35,3 +35,6 @@ class OknoStartTest(unittest.TestCase):
             OknoStart, '5', '5', '2'))
         self.assertTrue(OknoStart.testy_pobrane_zmiene(
             OknoStart, '14', '3', '10'))
+
+if __name__ == '__main__':
+    unittest.main()
