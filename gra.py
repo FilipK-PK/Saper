@@ -3,41 +3,46 @@ import os
 import random
 import pygame
 
-POLE_0 = pygame.image.load(os.path.join('png/0.png'))
-POLE_1 = pygame.image.load(os.path.join('png/1.png'))
-POLE_2 = pygame.image.load(os.path.join('png/2.png'))
-POLE_3 = pygame.image.load(os.path.join('png/3.png'))
-POLE_4 = pygame.image.load(os.path.join('png/4.png'))
-POLE_5 = pygame.image.load(os.path.join('png/5.png'))
-POLE_6 = pygame.image.load(os.path.join('png/6.png'))
-POLE_7 = pygame.image.load(os.path.join('png/7.png'))
-POLE_8 = pygame.image.load(os.path.join('png/8.png'))
+#scieszka katalogu z png
+SCIERZKA = 'png'
 
-POLE_BABY = pygame.image.load(os.path.join('png/b.png'))
-POLE_BABY_BUM = pygame.image.load(os.path.join('png/bw.png'))
-POLE_BLAD_FLAGI = pygame.image.load(os.path.join('png/bp.png'))
-POLE_WYRGANA = pygame.image.load(os.path.join('png/w.png'))
-POLE_PRZEGRANA = pygame.image.load(os.path.join('png/k.png'))
-POLE_ZASLEPKA_WY_PR = pygame.image.load(os.path.join('png/zp.png'))
+#pobieram pola 1,2.. i baby
+ZBIOR_ODKRYTYCH_IKON = {}
+WARTOSCI_IKON_Z_CYFRAMI = (0, 1, 2, 3, 4, 5, 6, 7, 8, 'x', 'b', 'br', 'bp',)
+NAZWY_IKON_PUL_Z_CYFRAMI = ('0.png', '1.png', '2.png', '3.png', '4.png',
+                           '5.png', '6.png', '7.png', '8.png', 'bw.png',
+                          'b.png', 'bw.png', 'bp.png')
+for wartosc, nazwa in zip(WARTOSCI_IKON_Z_CYFRAMI, NAZWY_IKON_PUL_Z_CYFRAMI):
+    ZBIOR_ODKRYTYCH_IKON.update(
+       { wartosc:pygame.image.load(os.path.join(SCIERZKA, nazwa)) })
 
-PRZYCISK_PUSTY = pygame.image.load(os.path.join('png/p.png'))
-PRZYCISK_RESET = pygame.image.load(os.path.join('png/r.png'))
-PRZYCISK_FLAFI = pygame.image.load(os.path.join('png/f.png'))
-PRZYCISK_BABY_PODGLAD = pygame.image.load(os.path.join('png/br.png'))
-PRZYCISK_NIEPEWNOSCI = pygame.image.load(os.path.join('png/z.png'))
+#pobieram pola okreslajace zakonczenie
+ZBIOR_WYGRANA_PRZEGRANA = {}
+NAZWY_IKON_WYGRANA_PRZEGRANA = ('w.png', 'k.png', 'zp.png')
+NAZWA_KAFELKU_WYGRANA_PRZEGRANA = ('POLE_WYRGANA', 'POLE_PRZEGRANA',
+                                   'POLE_ZASLEPKA_WY_PR')
+for nazwa_kafelka, nazwa_pliku in zip(NAZWA_KAFELKU_WYGRANA_PRZEGRANA,
+                                     NAZWY_IKON_WYGRANA_PRZEGRANA):
+    ZBIOR_WYGRANA_PRZEGRANA.update({nazwa_kafelka
+                           :pygame.image.load(os.path.join(SCIERZKA, nazwa_pliku))})
 
-LICZBA_0 = pygame.image.load(os.path.join('png/n0.png'))
-LICZBA_1 = pygame.image.load(os.path.join('png/n1.png'))
-LICZBA_2 = pygame.image.load(os.path.join('png/n2.png'))
-LICZBA_3 = pygame.image.load(os.path.join('png/n3.png'))
-LICZBA_4 = pygame.image.load(os.path.join('png/n4.png'))
-LICZBA_5 = pygame.image.load(os.path.join('png/n5.png'))
-LICZBA_6 = pygame.image.load(os.path.join('png/n6.png'))
-LICZBA_7 = pygame.image.load(os.path.join('png/n7.png'))
-LICZBA_8 = pygame.image.load(os.path.join('png/n8.png'))
-LICZBA_9 = pygame.image.load(os.path.join('png/n9.png'))
-LICZBA_MINUS = pygame.image.load(os.path.join('png/n-.png'))
-LICZBA_BRAK = pygame.image.load(os.path.join('png/nn.png'))
+#pobieranie png przyciskow
+PRZYCISK = {}
+NAZWA_PLIKU_PRZYCISKU = ('PUSTY', 'RESET', 'FLAGA',
+                        'BABY_PODGLAD', 'NIEPEWNOSC')
+NAZWA_PRZYCISKU = ('p.png', 'r.png', 'f.png', 'br.png', 'z.png')
+for nazwa_przycisku, nazwa_pliku in zip(NAZWA_PLIKU_PRZYCISKU,
+                                       NAZWA_PRZYCISKU):
+    PRZYCISK.update({nazwa_przycisku:pygame.image.load(
+        os.path.join(SCIERZKA, nazwa_pliku))})
+
+# pobieram pola wyswietlacza
+ZNAKI_WYSWIETLACZA = []
+NAZWY_IKON_WYSWIETLACZA = ('n0.png', 'n1.png', 'n2.png', 'n3.png', 'n4.png',
+                          'n5.png', 'n6.png', 'n7.png', 'n8.png', 'n9.png',
+                         'n-.png', 'nn.png')
+for nazwa in NAZWY_IKON_WYSWIETLACZA:
+    ZNAKI_WYSWIETLACZA.append(pygame.image.load(os.path.join(SCIERZKA, nazwa)))
 
 # zmienne globalne
 SZEROKOSC_KAFELKA = 40
@@ -56,13 +61,6 @@ POLE_PUSTE = (0, 0)
 ZNAK_BABY = 'x'
 ZNAK_PUSTY = 0
 
-ZBIOR_ODKRYTYCH_IKON = {0: POLE_0, 1: POLE_1, 2: POLE_2, 3: POLE_3,
-                        4: POLE_4, 5: POLE_5, 6: POLE_6, 7: POLE_7,
-                        8: POLE_8, 'x': POLE_BABY_BUM, 'b': POLE_BABY,
-                        'br': POLE_BLAD_FLAGI, 'bp': POLE_BLAD_FLAGI}
-
-ZNAKI_WYSWIETLACZA = (LICZBA_0, LICZBA_1, LICZBA_2, LICZBA_3, LICZBA_4,
-                      LICZBA_5, LICZBA_6, LICZBA_7, LICZBA_8, LICZBA_9)
 
 class Plansza:
     ''' klasa tworzaca macierz do klasy Gra '''
@@ -82,10 +80,12 @@ class Plansza:
 class Gra:
     ''' klasa tworzaca gre saper '''
     def __init__(self, wysokosc, szerokosc, baby):
+        self.wysokosc = wysokosc
+        self.szerokosc = szerokosc
         self.baby = baby
         self.ilosc_bab = baby
-        self.odstep_macierzy_od_boku = \
-            int((600 - szerokosc * SZEROKOSC_KAFELKA) / 2) + 10
+        self.odstep_macierzy_od_boku = (int((600 - szerokosc * 
+                                             SZEROKOSC_KAFELKA) / 2) + 10)
         self.odstep_macierzy_od_gory = 70
         self.end = False
         self.stop = False
@@ -143,7 +143,8 @@ class Gra:
 
          # rysowanie i okreslanie polorzenie liczby 1
         if liczba_bab < 100:
-            surface.blit(LICZBA_BRAK, GOR_LEW_ROG_1_LICZBY)
+            # rysuje pole bez liczby
+            surface.blit(ZNAKI_WYSWIETLACZA[11], GOR_LEW_ROG_1_LICZBY)
         else:
             surface.blit(ZNAKI_WYSWIETLACZA[liczba_bab//100],
                          GOR_LEW_ROG_1_LICZBY)
@@ -151,7 +152,8 @@ class Gra:
 
          # rysowanie i okreslanie polorzenie liczby 2
         if liczba_bab < 10:
-            surface.blit(LICZBA_BRAK, GOR_LEW_ROG_2_LICZBY)
+            # rysuje pole bez liczby
+            surface.blit(ZNAKI_WYSWIETLACZA[11], GOR_LEW_ROG_2_LICZBY)
         else:
             surface.blit(ZNAKI_WYSWIETLACZA[liczba_bab//10],
                          GOR_LEW_ROG_2_LICZBY)
@@ -163,9 +165,9 @@ class Gra:
         # okreslanie minusa
         if self.ilosc_bab < 0:
             if self.ilosc_bab > -10:
-                surface.blit(LICZBA_MINUS, GOR_LEW_ROG_2_LICZBY)
+                surface.blit(ZNAKI_WYSWIETLACZA[10], GOR_LEW_ROG_2_LICZBY)
             elif self.ilosc_bab > -100:
-                surface.blit(LICZBA_MINUS, GOR_LEW_ROG_1_LICZBY)
+                surface.blit(ZNAKI_WYSWIETLACZA[10], GOR_LEW_ROG_1_LICZBY)
 
     def rysuj(self, surface):
         ''' rysuje wszystkich obiektow na ekranie planszy '''
@@ -173,15 +175,18 @@ class Gra:
         self.rysuj_licznik_gry(surface)  # rysowanie licznika bab
 
         # przycisk resetu
-        surface.blit(PRZYCISK_RESET, GOR_LEW_ROG_RESET)
+        surface.blit(PRZYCISK['RESET'], GOR_LEW_ROG_RESET)
 
         # rysowanie wygranej przegranej
         if self.win:
-            surface.blit(POLE_WYRGANA, GOR_LEW_ROG_WYGR_PRZE)
+            surface.blit(ZBIOR_WYGRANA_PRZEGRANA['POLE_WYRGANA'],
+                        GOR_LEW_ROG_WYGR_PRZE)
         elif self.end:
-            surface.blit(POLE_PRZEGRANA, GOR_LEW_ROG_WYGR_PRZE)
+            surface.blit(ZBIOR_WYGRANA_PRZEGRANA['POLE_PRZEGRANA'],
+                        GOR_LEW_ROG_WYGR_PRZE)
         else:
-            surface.blit(POLE_ZASLEPKA_WY_PR, GOR_LEW_ROG_WYGR_PRZE)
+            surface.blit(ZBIOR_WYGRANA_PRZEGRANA['POLE_ZASLEPKA_WY_PR'],
+                        GOR_LEW_ROG_WYGR_PRZE)
 
         # rysowanie przyciskow do odblokowania
         for y in range(len(self.macierz)):
@@ -195,14 +200,14 @@ class Gra:
                 elif self.macierz[y][x][1] == STAN_NIC:# pokaz nieruszone pola
                     # pokaz podglad baby
                     if self.macierz[y][x][0] == ZNAK_BABY and self.faul:
-                        surface.blit(PRZYCISK_BABY_PODGLAD, (yi, xi))
+                        surface.blit(PRZYCISK['BABY_PODGLAD'], (yi, xi))
                     else:
-                        surface.blit(PRZYCISK_PUSTY, (yi, xi))  # zwwykle pole
+                        surface.blit(PRZYCISK['PUSTY'], (yi, xi))# zwwykle pole
                 elif self.macierz[y][x][1] == STAN_FLAGA:
-                    surface.blit(PRZYCISK_FLAFI, (yi, xi))  # oznacz bobe
+                    surface.blit(PRZYCISK['FLAGA'], (yi, xi))  # oznacz bobe
                 elif self.macierz[y][x][1] == STAN_ZAPYTANIE:
                     # oznacz niepewnosc
-                    surface.blit(PRZYCISK_NIEPEWNOSCI, (yi, xi))
+                    surface.blit(PRZYCISK['NIEPEWNOSC'], (yi, xi))
 
     def ruch(self):
         ''' nasluchuje wcisnietych klawisza myszki '''
@@ -212,27 +217,27 @@ class Gra:
             kursor = pygame.mouse.get_pos()
 
             # czy wcisnieto reser
-            if POLOZENIE_RESET[3] < kursor[0] < POLOZENIE_RESET[1]\
-                    and POLOZENIE_RESET[0] < kursor[1] < POLOZENIE_RESET[2]:
+            if (POLOZENIE_RESET[3] < kursor[0] < POLOZENIE_RESET[1] 
+                and POLOZENIE_RESET[0] < kursor[1] < POLOZENIE_RESET[2]):
                 self.reset()
 
             # czy wcisnieto jakies pole kafelkow
-            elif self.odstep_macierzy_od_boku < kursor[0] < \
-                    SZEROKOSC_OKNA - self.odstep_macierzy_od_boku \
-                    and self.odstep_macierzy_od_gory < kursor[1] < \
-                    self.odstep_macierzy_od_gory \
-                    + len(self.macierz) * SZEROKOSC_KAFELKA\
-                    and not self.stop:
+            elif (self.odstep_macierzy_od_boku < kursor[0] < 
+                    SZEROKOSC_OKNA - self.odstep_macierzy_od_boku 
+                    and self.odstep_macierzy_od_gory < kursor[1] < 
+                    self.odstep_macierzy_od_gory 
+                    + len(self.macierz) * SZEROKOSC_KAFELKA
+                    and not self.stop):
 
                 # okreslanie ktory kafelek wcisnieto
-                y = (kursor[1] - self.odstep_macierzy_od_gory) // \
-                    SZEROKOSC_KAFELKA
-                x = (kursor[0] - self.odstep_macierzy_od_boku) // \
-                    SZEROKOSC_KAFELKA
+                y = ((kursor[1] - self.odstep_macierzy_od_gory) //
+                    SZEROKOSC_KAFELKA)
+                x = ((kursor[0] - self.odstep_macierzy_od_boku) //
+                    SZEROKOSC_KAFELKA)
 
                 # co ma sie stac gdy pole jest puste lub niepewne
-                if self.macierz[y][x][1] == STAN_NIC \
-                        or self.macierz[y][x][1] == STAN_ZAPYTANIE:
+                if (self.macierz[y][x][1] == STAN_NIC
+                        or self.macierz[y][x][1] == STAN_ZAPYTANIE):
                     wartosc_pola = self.macierz[y][x][0]
                     self.macierz[y][x] = (wartosc_pola, STAN_ODKRYTY)
 
@@ -250,17 +255,17 @@ class Gra:
             kursor = pygame.mouse.get_pos()
 
             # czy wcisnieto jakies pole kafelkow
-            if self.odstep_macierzy_od_boku < kursor[0] \
-                    < SZEROKOSC_OKNA - self.odstep_macierzy_od_boku \
-                and self.odstep_macierzy_od_gory < kursor[1] \
-                    < self.odstep_macierzy_od_gory \
-                + len(self.macierz) * SZEROKOSC_KAFELKA and not self.stop:
+            if (self.odstep_macierzy_od_boku < kursor[0]
+                    < SZEROKOSC_OKNA - self.odstep_macierzy_od_boku
+                and self.odstep_macierzy_od_gory < kursor[1]
+                    < self.odstep_macierzy_od_gory
+                + len(self.macierz) * SZEROKOSC_KAFELKA and not self.stop):
 
                 # okreslanie ktory kafelek wcisnieto
-                y = (kursor[1] - self.odstep_macierzy_od_gory) //\
-                    SZEROKOSC_KAFELKA
-                x = (kursor[0] - self.odstep_macierzy_od_boku) //\
-                    SZEROKOSC_KAFELKA
+                y = ((kursor[1] - self.odstep_macierzy_od_gory) //
+                    SZEROKOSC_KAFELKA)
+                x = ((kursor[0] - self.odstep_macierzy_od_boku) //
+                    SZEROKOSC_KAFELKA)
 
                 # jesli pole bylo puste to ustaw zabespieczone
                 if self.macierz[y][x][1] == STAN_NIC:
@@ -281,12 +286,12 @@ class Gra:
 
     def wybuch(self, x, y):
         ''' sprawdza wybranie baby, i odpala reszte bab '''
-        for i in range(len(self.macierz)):
-            for j in range(len(self.macierz[i])):
+        for i in range(self.wysokosc):
+            for j in range(self.szerokosc):
                 if self.macierz[i][j] == (ZNAK_BABY, STAN_NIC):
                     self.macierz[i][j] = ('b', STAN_ODKRYTY)
-                if self.macierz[i][j][1] == STAN_FLAGA \
-                        and self.macierz[i][j][0] != ZNAK_BABY:
+                if (self.macierz[i][j][1] == STAN_FLAGA
+                        and self.macierz[i][j][0] != ZNAK_BABY):
                     self.macierz[i][j] = ('bp', STAN_ODKRYTY)
 
         self.macierz[y][x] = (ZNAK_BABY, STAN_ODKRYTY)
@@ -298,11 +303,11 @@ class Gra:
         ''' odkrywa pole na planszy '''
         pole_odkryte = (0, 1)
 
-        punkty = [{'y': -1, 'x': -1}, {'y': -1, 'x': 0}, {'y': -1, 'x': 1},
+        PUNKTY_OKREZNE = [{'y': -1, 'x': -1}, {'y': -1, 'x': 0}, {'y': -1, 'x': 1},
                   {'y': 0, 'x': 1}, {'y': 1, 'x': 1}, {'y': 1, 'x': 0},
                   {'y': 1, 'x': -1}, {'y': 0, 'x': -1}]
 
-        for p in punkty:
+        for p in PUNKTY_OKREZNE:
             if not 0 <= y + p['y'] < len(self.macierz):
                 continue
             if not 0 <= x + p['x'] < len(self.macierz[y]):
@@ -344,16 +349,16 @@ class Gra:
         ''' sprawdza czy gracz wygral ture '''
         liczba_zakrytych_bab = 0
         liczba_odkrytych_pul = 0
-        for i in range(len(self.macierz)):
-            for j in range(len(self.macierz[0])):
-                if self.macierz[i][j] == (ZNAK_BABY, STAN_FLAGA) \
-                        or (self.macierz[i][j][0] == ZNAK_BABY and self.faul):
+        for i in range(self.wysokosc):
+            for j in range(self.szerokosc):
+                if (self.macierz[i][j] == (ZNAK_BABY, STAN_FLAGA)
+                        or (self.macierz[i][j][0] == ZNAK_BABY and self.faul)):
                     liczba_zakrytych_bab += 1
                 if self.macierz[i][j][1] == STAN_ODKRYTY:
                     liczba_odkrytych_pul += 1
 
-        if liczba_zakrytych_bab + liczba_odkrytych_pul ==\
-                len(self.macierz)*len(self.macierz[0]):
+        if (liczba_zakrytych_bab + liczba_odkrytych_pul ==
+                len(self.macierz)*len(self.macierz[0])):
             self.stop = True
             self.win = True
 
