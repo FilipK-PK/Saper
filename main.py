@@ -1,7 +1,7 @@
 ''' plik glowny '''
+from okno_start import OknoStart
 
 def main():
-    from okno_start import OknoStart
     gra = OknoStart()
     gra.uruchom_okna()
 
