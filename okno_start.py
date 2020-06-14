@@ -1,8 +1,8 @@
 ''' klasa z oknem poczatkowym '''
 import pygame
 import tkinter
-import tkinter.messagebox
-from gra import Gra
+from tkinter import messagebox
+import gra
 
 WYMIARY_OKNA = (620, 680)
 MAX_PLANSZY = 15
@@ -114,7 +114,7 @@ class OknoStart:
         pygame.display.set_caption('Saper')
 
         # wywolanie planszy
-        gra = Gra(self.wartosci_start[0], self.wartosci_start[1],
+        gra_saper = gra(self.wartosci_start[0], self.wartosci_start[1],
                   self.wartosci_start[2])
 
         # petla wykonuje sie dopuki nie wylaczymy okna
@@ -128,13 +128,13 @@ class OknoStart:
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     # pobieranie klawiszy z myszki
-                    gra.ruch()
+                    gra_saper.ruch()
 
                 if event.type == pygame.KEYDOWN:
                     # pobieranie klawiszy z klawiatury
-                    gra.klik(event.key)
+                    gra_saper.klik(event.key)
 
             tlo.fill((0, 0, 0))
-            gra.rysuj(tlo)
-            gra.koniec()
+            gra_saper.rysuj(tlo)
+            gra_saper.koniec()
             pygame.display.flip()
