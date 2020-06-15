@@ -8,8 +8,7 @@ Okno gry to klasa napisana na pygame, pobiera ona pliki png stworzone przeze mni
 
 Klasa testująca sprawdza głównie czy klasa startu poprawnie sprawdziła początkowe wartości.
 
-###### Klasa
-[Gra](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L82).
-Wyjatki.
+#### Klasy
+[Gra](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L80)
 
-Test.
+[Plansza](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L65)
