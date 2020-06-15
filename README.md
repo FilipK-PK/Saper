@@ -12,7 +12,7 @@ Klasa testująca sprawdza głównie czy klasa startu poprawnie sprawdziła pocz�
 [Gra](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L80)  
 [Plansza](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L65)  
 [Klasa Wyjatków](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L14)  
-[Okno start](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_Start.py#L19)  
+[Okno start](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L19)
 
 #### Wyjatki
 [Klasa Wyjatków](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L14) 
