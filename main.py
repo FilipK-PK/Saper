@@ -1,8 +1,8 @@
 ''' plik glowny '''
-import okno_start
+from okno_start import OknoStart
 
 def main_gra():
-    gra = okno_start()
+    gra = OknoStart()
     gra.uruchom_okna()
 
 
