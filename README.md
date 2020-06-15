@@ -15,4 +15,4 @@ Klasa testująca sprawdza głównie czy klasa startu poprawnie sprawdziła pocz�
 [Okno start](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L19)
 
 #### Wyjatki
-[Klasa Wyjatków](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L14) 
+[1](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L14)  
