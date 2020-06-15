@@ -20,4 +20,4 @@ Klasa testująca sprawdza głównie czy klasa startu poprawnie sprawdziła pocz�
 [3](https://github.com/FilipK-PK/Saper/blob/dabd49dd9e6321a867bbea224b15a6effff567c9/okno_start.py#L87)  
 
 #### List comprehensions
-[LC](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L80)  
+[LC](https://github.com/FilipK-PK/Saper/blob/0413525c9a5175226af5267d6efd3a115a38c87a/gra.py#L76)  
